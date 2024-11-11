@@ -81,7 +81,7 @@ class TestHomework:
         except KeyError:
             pass
     try:
-        import homework
+        import homework_bot.homework as homework
     except KeyError as e:
         for arg in e.args:
             if arg in env_vars:
@@ -103,7 +103,7 @@ class TestHomework:
 
         monkeypatch.setattr(telegram, "Bot", mock_telegram_bot)
 
-        import homework
+        import homework_bot.homework as homework
 
         assert hasattr(homework, 'logging'), (
             'Убедитесь, что настроили логирование для вашего бота'
@@ -115,7 +115,7 @@ class TestHomework:
 
         monkeypatch.setattr(telegram, "Bot", mock_telegram_bot)
 
-        import homework
+        import homework_bot.homework as homework
         utils.check_function(homework, 'send_message', 2)
 
     def test_get_api_answers(self, monkeypatch, random_timestamp,
@@ -128,7 +128,7 @@ class TestHomework:
 
         monkeypatch.setattr(requests, 'get', mock_response_get)
 
-        import homework
+        import homework_bot.homework as homework
 
         func_name = 'get_api_answer'
         utils.check_function(homework, func_name, 2)
@@ -174,7 +174,7 @@ class TestHomework:
 
         monkeypatch.setattr(requests, 'get', mock_500_response_get)
 
-        import homework
+        import homework_bot.homework as homework
 
         func_name = 'get_api_answer'
         try:
@@ -196,7 +196,7 @@ class TestHomework:
             "lesson_name": "Итоговый проект"
         }
 
-        import homework
+        import homework_bot.homework as homework
 
         func_name = 'parse_status'
 
@@ -257,7 +257,7 @@ class TestHomework:
 
         monkeypatch.setattr(requests, 'get', mock_response_get)
 
-        import homework
+        import homework_bot.homework as homework
 
         func_name = 'check_response'
         response = homework.get_api_answer(api_url, current_timestamp)
@@ -294,7 +294,7 @@ class TestHomework:
 
         monkeypatch.setattr(requests, 'get', mock_response_get)
 
-        import homework
+        import homework_bot.homework as homework
 
         func_name = 'check_response'
         response = homework.get_api_answer(api_url, current_timestamp)
@@ -327,7 +327,7 @@ class TestHomework:
 
         monkeypatch.setattr(requests, 'get', mock_no_homeworks_response_get)
 
-        import homework
+        import homework_bot.homework as homework
 
         func_name = 'check_response'
         result = homework.get_api_answer(api_url, current_timestamp)
@@ -360,7 +360,7 @@ class TestHomework:
 
         monkeypatch.setattr(requests, 'get', mock_empty_response_get)
 
-        import homework
+        import homework_bot.homework as homework
 
         func_name = 'check_response'
         result = homework.get_api_answer(api_url, current_timestamp)
@@ -386,7 +386,7 @@ class TestHomework:
 
         monkeypatch.setattr(requests, 'get', mock_response_get)
 
-        import homework
+        import homework_bot.homework as homework
 
         func_name = 'check_response'
         try:
